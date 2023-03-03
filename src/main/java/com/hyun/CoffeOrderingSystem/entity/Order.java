@@ -24,4 +24,11 @@ public class Order {
 
     @Column(name = "ORDER_PRICE")
     private BigDecimal price;
+
+    public Order(Member member, Menu menu, OffsetDateTime orderDateTime, BigDecimal price) {
+        this.member = member;
+        this.menu = menu;
+        this.orderDateTime = orderDateTime;
+        this.price = price;
+    }
 }

@@ -1,8 +1,10 @@
 package com.hyun.CoffeOrderingSystem.controller;
 
+import com.hyun.CoffeOrderingSystem.dto.OrderCoffeeReq;
 import com.hyun.CoffeOrderingSystem.dto.PointChargeReq;
 import com.hyun.CoffeOrderingSystem.dto.Response;
 import com.hyun.CoffeOrderingSystem.service.MenuService;
+import com.hyun.CoffeOrderingSystem.service.OrderService;
 import com.hyun.CoffeOrderingSystem.service.PointService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ public class OrderingSystemController {
 
     private final MenuService menuService;
     private final PointService pointService;
+    private final OrderService orderService;
 
     // 커피 메뉴 목록 조회
     @GetMapping("/menu")
@@ -33,7 +36,12 @@ public class OrderingSystemController {
     }
 
     // 커피 주문 및 결제
-
+    @PostMapping("/order")
+    public ResponseEntity<?> orderCoffee(@RequestBody OrderCoffeeReq request) {
+        orderService.OrderCoffee(request);
+        Response response = new Response("success", "커피 주문 성공", "");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
     // 인기메뉴 목록 조회
 }

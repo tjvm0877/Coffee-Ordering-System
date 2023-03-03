@@ -25,7 +25,11 @@ public class PointServiceImpl implements PointService {
 
     @Override
     @Transactional
-    public void Payment(BigDecimal amount) {
+    public void Payment(Member member, BigDecimal amount) {
+        if (!member.payable(amount)) {
+            throw new IllegalArgumentException("포인트 잔액이 부족합니다. 포인트를 충전하고 다시 주문 해주세요.");
+        }
 
+        member.pointCharge(amount);
     }
 }

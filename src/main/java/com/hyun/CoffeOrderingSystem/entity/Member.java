@@ -18,4 +18,10 @@ public class Member {
     public void pointCharge(BigDecimal amount) {
         this.point.add(amount);
     }
+
+    public boolean payable(BigDecimal amount) {
+        if (this.point.compareTo(amount) < 0) return false;
+
+        return true;
+    }
 }
