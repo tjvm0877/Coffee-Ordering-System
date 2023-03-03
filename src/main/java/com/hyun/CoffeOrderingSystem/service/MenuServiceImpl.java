@@ -5,6 +5,7 @@ import com.hyun.CoffeOrderingSystem.entity.Menu;
 import com.hyun.CoffeOrderingSystem.repository.MenuRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class MenuServiceImpl implements MenuService {
     private final MenuRepository menuRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public List<MenuInfoResp> getMenuList() {
         List<Menu> menus = menuRepository.findAll();
 

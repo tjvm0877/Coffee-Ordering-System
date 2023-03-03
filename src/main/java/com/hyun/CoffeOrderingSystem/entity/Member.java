@@ -14,4 +14,8 @@ public class Member {
 
     @Column(name = "POINT")
     private BigDecimal point;
+
+    public void pointCharge(BigDecimal amount) {
+        this.point.add(amount);
+    }
 }
