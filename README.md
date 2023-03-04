@@ -35,3 +35,28 @@
 ## 4. ERD
 ![ERD2](https://user-images.githubusercontent.com/28504937/222832437-5b54a990-c2a5-4c83-a78f-0266656fea54.png)
 
+### DDL
+```SQL
+CREATE TABLE menus ( 
+	menu_id BIGINT PRIMARY KEY AUTO_INCREMENT, 
+	name varchar(50) NOT NULL, 
+	price DECIMAL(10, 2) NOT NULL DEFAULT 0 
+);
+
+CREATE TABLE members ( 
+	user_id BIGINT PRIMARY KEY AUTO_INCREMENT, 
+	point DECIMAL(10, 2) NOT NULL DEFAULT 0
+);
+
+CREATE TABLE orders (
+	`order_id` bigint NOT NULL AUTO_INCREMENT,
+	`member_id` bigint NOT NULL,
+	`menu_id` bigint NOT NULL,
+	`order_date` date NOT NULL,
+	`order_price` decimal(10,2) NOT NULL,
+	PRIMARY KEY (`order_id`),
+	FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`),
+	FOREIGN KEY (`member_id`) REFERENCES `members` (`member_id`)
+);
+```
+
