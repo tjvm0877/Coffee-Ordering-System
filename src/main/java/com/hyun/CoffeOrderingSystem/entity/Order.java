@@ -4,8 +4,11 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "ORDERS")
+@NoArgsConstructor
 public class Order {
     @Id
     @Column(name = "ORDER_ID")
