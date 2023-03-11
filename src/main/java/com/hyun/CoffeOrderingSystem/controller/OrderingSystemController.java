@@ -44,4 +44,9 @@ public class OrderingSystemController {
     }
 
     // 인기메뉴 목록 조회
+    @GetMapping("/popular")
+    public ResponseEntity<?> getPopular() {
+        Response response = new Response("success", "인기 메뉴 리스트 조회 성공", menuService.getPopularMenu());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
