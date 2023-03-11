@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 @Service
@@ -31,8 +33,13 @@ public class OrderService {
         Menu menu = menuRepository.findById(request.getMenu_id())
                 .orElseThrow(() -> new IllegalArgumentException("해당 메뉴가 존재하지 않습니다. 메뉴를 다시 확인해주세요."));
 
-        pointService.Payment(member, menu.getPrice());
-        Order newOrder = new Order(member, menu, OffsetDateTime.now(), menu.getPrice());
+        BigDecimal amount = new BigDecimal(menu.getPrice());
+        if (!member.payable(amount)) {
+            throw new IllegalArgumentException("포인트 잔액이 부족합니다. 포인트를 충전하고 다시 주문 해주세요.");
+        }
+        member.pointCharge(amount);
+
+        Order newOrder = new Order(member.getId(), menu.getId(), LocalDateTime.now(), menu.getPrice());
         orderRepository.save(newOrder);
     }
 }
