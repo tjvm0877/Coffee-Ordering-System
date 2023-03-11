@@ -4,19 +4,25 @@ import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import java.math.BigDecimal;
 
 @Entity
 @Getter
+@Table(name = "MENU")
 public class Menu {
     @Id
-    @Column(name = "MENU_ID")
+    @Column(name = "menu_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column
     private String name;
 
-    @Column(name = "PRICE")
-    private BigDecimal price;
+    @Column
+    private Long price;
 }

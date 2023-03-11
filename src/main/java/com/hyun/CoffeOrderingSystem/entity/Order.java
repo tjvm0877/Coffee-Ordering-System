@@ -2,6 +2,7 @@ package com.hyun.CoffeOrderingSystem.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 import lombok.NoArgsConstructor;
@@ -11,26 +12,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Order {
     @Id
-    @Column(name = "ORDER_ID")
+    @Column(name = "order_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+    @Column
+    private Long memberId;
 
-    @ManyToOne
-    @JoinColumn(name = "MENU_ID")
-    private Menu menu;
+    @Column
+    private Long menuId;
 
-    @Column(name = "ORDER_DATE")
-    private OffsetDateTime orderDateTime;
+    @Column(name = "order_date")
+    private LocalDateTime orderDateTime;
 
-    @Column(name = "ORDER_PRICE")
-    private BigDecimal price;
+    @Column(name = "order_price")
+    private Long price;
 
-    public Order(Member member, Menu menu, OffsetDateTime orderDateTime, BigDecimal price) {
-        this.member = member;
-        this.menu = menu;
+    public Order(Long member, Long menu, LocalDateTime orderDateTime, Long price) {
+        this.memberId = member;
+        this.menuId = menu;
         this.orderDateTime = orderDateTime;
         this.price = price;
     }
