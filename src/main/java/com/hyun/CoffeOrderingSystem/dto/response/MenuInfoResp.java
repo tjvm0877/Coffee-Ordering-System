@@ -1,9 +1,11 @@
 package com.hyun.CoffeOrderingSystem.dto.response;
 
 import com.hyun.CoffeOrderingSystem.entity.Menu;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 
+@Getter
 public class MenuInfoResp {
     private Long menuId;
     private String name;
