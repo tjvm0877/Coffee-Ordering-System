@@ -1,13 +1,9 @@
 package com.hyun.CoffeOrderingSystem.entity;
 
+import com.hyun.CoffeOrderingSystem.util.converter.BigDecimalToBigIntegerAttributeConverter;
 import lombok.Getter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import java.math.BigDecimal;
 
@@ -23,6 +19,7 @@ public class Menu {
     @Column
     private String name;
 
-    @Column
-    private Long price;
+    @Convert(converter = BigDecimalToBigIntegerAttributeConverter.class)
+    @Column(name = "price", columnDefinition = "BIGINT")
+    private BigDecimal price;
 }

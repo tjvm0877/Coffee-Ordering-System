@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
+import com.hyun.CoffeOrderingSystem.util.converter.BigDecimalToBigIntegerAttributeConverter;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -25,10 +26,11 @@ public class Order {
     @Column(name = "order_date")
     private LocalDateTime orderDateTime;
 
-    @Column(name = "order_price")
-    private Long price;
+    @Convert(converter = BigDecimalToBigIntegerAttributeConverter.class)
+    @Column(name = "order_price", columnDefinition = "BIGINT")
+    private BigDecimal price;
 
-    public Order(Long member, Long menu, LocalDateTime orderDateTime, Long price) {
+    public Order(Long member, Long menu, LocalDateTime orderDateTime, BigDecimal price) {
         this.memberId = member;
         this.menuId = menu;
         this.orderDateTime = orderDateTime;

@@ -1,8 +1,8 @@
 package com.hyun.CoffeOrderingSystem.controller;
 
-import com.hyun.CoffeOrderingSystem.dto.OrderCoffeeReq;
-import com.hyun.CoffeOrderingSystem.dto.PointChargeReq;
-import com.hyun.CoffeOrderingSystem.dto.Response;
+import com.hyun.CoffeOrderingSystem.dto.request.OrderCoffeeReq;
+import com.hyun.CoffeOrderingSystem.dto.request.PointChargeReq;
+import com.hyun.CoffeOrderingSystem.dto.response.Response;
 import com.hyun.CoffeOrderingSystem.service.MenuService;
 import com.hyun.CoffeOrderingSystem.service.OrderService;
 import com.hyun.CoffeOrderingSystem.service.PointService;

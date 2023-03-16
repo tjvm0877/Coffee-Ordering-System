@@ -1,4 +1,4 @@
-package com.hyun.CoffeOrderingSystem.dto;
+package com.hyun.CoffeOrderingSystem.dto.response;
 
 import com.hyun.CoffeOrderingSystem.entity.Menu;
 
@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 public class MenuInfoResp {
     private Long menuId;
     private String name;
-    private Long price;
+    private BigDecimal price;
 
-    private MenuInfoResp(Long menuId, String name, Long price) {
+    private MenuInfoResp(Long menuId, String name, BigDecimal price) {
         this.menuId = menuId;
         this.name = name;
         this.price = price;

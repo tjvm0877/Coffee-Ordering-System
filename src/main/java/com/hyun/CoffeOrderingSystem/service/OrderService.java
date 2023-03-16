@@ -1,6 +1,6 @@
 package com.hyun.CoffeOrderingSystem.service;
 
-import com.hyun.CoffeOrderingSystem.dto.OrderCoffeeReq;
+import com.hyun.CoffeOrderingSystem.dto.request.OrderCoffeeReq;
 import com.hyun.CoffeOrderingSystem.entity.Member;
 import com.hyun.CoffeOrderingSystem.entity.Menu;
 import com.hyun.CoffeOrderingSystem.entity.Order;
@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -33,11 +32,11 @@ public class OrderService {
         Menu menu = menuRepository.findById(request.getMenu_id())
                 .orElseThrow(() -> new IllegalArgumentException("해당 메뉴가 존재하지 않습니다. 메뉴를 다시 확인해주세요."));
 
-        BigDecimal amount = new BigDecimal(menu.getPrice());
+        BigDecimal amount = menu.getPrice();
         if (!member.payable(amount)) {
             throw new IllegalArgumentException("포인트 잔액이 부족합니다. 포인트를 충전하고 다시 주문 해주세요.");
         }
-        member.pointCharge(amount);
+        member.payment(amount);
 
         Order newOrder = new Order(member.getId(), menu.getId(), LocalDateTime.now(), menu.getPrice());
         orderRepository.save(newOrder);

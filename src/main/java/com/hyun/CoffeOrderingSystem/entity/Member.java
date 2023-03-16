@@ -1,14 +1,10 @@
 package com.hyun.CoffeOrderingSystem.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import java.math.BigDecimal;
 
+import com.hyun.CoffeOrderingSystem.util.converter.BigDecimalToBigIntegerAttributeConverter;
 import lombok.Getter;
 
 @Entity
@@ -27,21 +23,23 @@ public class Member {
     @Column
     private String phone;
 
-    @Column
-    private Long point;
+    @Convert(converter = BigDecimalToBigIntegerAttributeConverter.class)
+    @Column(name = "point", columnDefinition = "BIGINT")
+    private BigDecimal point;
 
 
     public void pointCharge(BigDecimal amount) {
-        BigDecimal pointBD = new BigDecimal(this.point);
-        pointBD.add(amount);
+        this.point.subtract(amount);
     }
 
     public boolean payable(BigDecimal amount) {
-        BigDecimal pointBD = new BigDecimal(this.point);
-        if (pointBD.compareTo(amount) < 0) {
+        if (this.point.compareTo(amount) < 0) {
             return false;
         }
-
         return true;
+    }
+
+    public void payment(BigDecimal amount) {
+        this.point.subtract(amount);
     }
 }

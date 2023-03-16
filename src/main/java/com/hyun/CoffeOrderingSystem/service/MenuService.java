@@ -1,7 +1,7 @@
 package com.hyun.CoffeOrderingSystem.service;
 
-import com.hyun.CoffeOrderingSystem.dto.MenuInfoResp;
-import com.hyun.CoffeOrderingSystem.dto.PopularMenu;
+import com.hyun.CoffeOrderingSystem.dto.response.MenuInfoResp;
+import com.hyun.CoffeOrderingSystem.dto.response.PopularMenu;
 import com.hyun.CoffeOrderingSystem.entity.Menu;
 import com.hyun.CoffeOrderingSystem.repository.MenuRepository;
 import lombok.RequiredArgsConstructor;

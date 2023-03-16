@@ -1,4 +1,4 @@
-package com.hyun.CoffeOrderingSystem.dto;
+package com.hyun.CoffeOrderingSystem.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -9,7 +9,7 @@ spring:
       on-profile: local
 
   datasource:
-    url: jdbc:mysql://localhost:3306/cafe
+    url: jdbc:mysql://localhost:3306/coffee
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -26,7 +26,7 @@ spring:
         default_batch_fetch_size: 1000
 
 ---
-# test ?? ??
+# test
 spring:
   config:
     activate:

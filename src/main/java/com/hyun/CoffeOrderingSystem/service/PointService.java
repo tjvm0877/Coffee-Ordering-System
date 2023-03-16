@@ -1,14 +1,11 @@
 package com.hyun.CoffeOrderingSystem.service;
 
-import com.hyun.CoffeOrderingSystem.dto.PointChargeReq;
+import com.hyun.CoffeOrderingSystem.dto.request.PointChargeReq;
 import com.hyun.CoffeOrderingSystem.entity.Member;
-import com.hyun.CoffeOrderingSystem.entity.Menu;
 import com.hyun.CoffeOrderingSystem.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
