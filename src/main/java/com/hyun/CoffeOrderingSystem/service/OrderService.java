@@ -23,12 +23,10 @@ public class OrderService {
     private final MemberRepository memberRepository;
     private final MenuRepository menuRepository;
     private final OrderRepository orderRepository;
-    private final PointService pointService;
 
     @Transactional
     public void OrderCoffee(OrderCoffeeReq request) {
-        Member member = memberRepository.findById(request.getUser_id())
-                .orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다. 회원번호를 다시 확인해주세요."));
+        Member member = memberRepository.findByIdWithPessimisticLock(request.getUser_id());
         Menu menu = menuRepository.findById(request.getMenu_id())
                 .orElseThrow(() -> new IllegalArgumentException("해당 메뉴가 존재하지 않습니다. 메뉴를 다시 확인해주세요."));
 

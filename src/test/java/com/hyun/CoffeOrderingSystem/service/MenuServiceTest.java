@@ -33,7 +33,6 @@ class MenuServiceTest {
 
     @Mock
     private MenuRepository menuRepository;
-
     private List<Menu> mockMenus;
 
     @BeforeEach

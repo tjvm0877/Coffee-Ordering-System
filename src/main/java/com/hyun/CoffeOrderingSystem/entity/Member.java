@@ -6,10 +6,12 @@ import java.math.BigDecimal;
 
 import com.hyun.CoffeOrderingSystem.util.converter.BigDecimalToBigIntegerAttributeConverter;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "MEMBERS")
 @Getter
+@NoArgsConstructor
 public class Member {
 
     @Id
@@ -40,6 +42,12 @@ public class Member {
     }
 
     public void payment(BigDecimal amount) {
-        this.point.subtract(amount);
+        this.point = this.point.subtract(amount);
+    }
+
+    public Member(String name, String phone, BigDecimal point) {
+        this.name = name;
+        this.phone = phone;
+        this.point = point;
     }
 }
